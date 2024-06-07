@@ -1,6 +1,16 @@
 # Based off: https://github.com/DFRobot/DFRobot_ENS160
 # Peter Johnston at Core Electronics June 2022
 
+
+def bytes_to_str(bs:bytes) -> str:
+    ToReturn:str = ""
+    for b in bs:
+        ToReturn = ToReturn + str(b) + ","
+    if len(ToReturn) > 0:
+        ToReturn = ToReturn[0:-1]
+    return ToReturn
+
+
 from PiicoDev_Unified import *
 try:
     from ucollections import namedtuple
@@ -114,8 +124,8 @@ class PiicoDev_ENS160(object):
         
     def _read(self, register, length=1, bytestring=False):
         try:
-            print("Reading " + str(length) + " byte(s) from register " + hex(register) + " at address " + hex(self.address))
             d= self.i2c.readfrom_mem(self.address, register, length)
+            print("Read " + str(length) + " byte(s) from register " + hex(register) + " at address " + hex(self.address) + ": " + bytes_to_str(bytes(d)))
             if bytestring: return bytes(d)
             return d
         except:
@@ -126,7 +136,7 @@ class PiicoDev_ENS160(object):
         
     def _write(self, register, data):
         try:
-            print("Writing " + str(len(data)) + " byte(s) to register " + hex(register) + " at address " + hex(self.address))
+            print("Writing " + str(len(data)) + " byte(s) to register " + hex(register) + " at address " + hex(self.address) + ": " + bytes_to_str(data))
             return self.i2c.writeto_mem(self.address, register, data)
         except:
             print(i2c_err_str.format(self.address))
