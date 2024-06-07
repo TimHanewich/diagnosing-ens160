@@ -107,17 +107,21 @@ class PiicoDev_ENS160(object):
         self._tvoc = None
         self._eco2 = None
         try:
+            print("Init sequence: reading part ID")
             part_id = self._read_int(_REG_PART_ID, 2)
             if part_id != _VAL_PART_ID:
                 print('Device is not PiicoDev ENS160')
                 raise SystemExit
+            print("Init sequence: part ID was correct!")
+            print("Init sequence: Turning on operating mode")
             self._write_int(_REG_OPMODE, _VAL_OPMODE_STANDARD, 1)
             sleep_ms(20)
-            opmode = self._read_int(_REG_OPMODE, 1)
+            print("Init sequence: Reading back op mode...")
+            opmode = self._read_int(_REG_OPMODE, 1) # it reads it back but it never uses this. Weird.
             sleep_ms(20)
             self._write_int(_REG_CONFIG, self.config, 1)
-            self.temperature = temperature
-            self.humidity = humidity
+            self.temperature = temperature # write temperature (there is a default param value if not supplied to through the init function)
+            self.humidity = humidity # write humidity (there is a default param value if not supplied to through the init function)
         except Exception as e:
             print(i2c_err_str.format(self.address))
             raise e
