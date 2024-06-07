@@ -114,6 +114,7 @@ class PiicoDev_ENS160(object):
         
     def _read(self, register, length=1, bytestring=False):
         try:
+            print("Reading " + str(length) + " byte(s) from register " + str(register) + " at address " + str(self.address))
             d= self.i2c.readfrom_mem(self.address, register, length)
             if bytestring: return bytes(d)
             return d
@@ -125,6 +126,7 @@ class PiicoDev_ENS160(object):
         
     def _write(self, register, data):
         try:
+            print("Writing " + str(len(data)) + " byte(s) to register " + str(register) + " at address " + str(self.address))
             return self.i2c.writeto_mem(self.address, register, data)
         except:
             print(i2c_err_str.format(self.address))
