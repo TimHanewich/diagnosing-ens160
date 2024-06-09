@@ -11,7 +11,7 @@ def loop() -> None:
     while True:
 
         # read
-        data = i2c.readfrom_memory(0x53, 0x20, 5) # AQI (1 byte), TVOC (2 bytes), ECO2 (2 bytes)
+        data = i2c.readfrom_mem(0x53, 0x20, 5) # AQI (1 byte), TVOC (2 bytes), ECO2 (2 bytes)
 
         # handle
         if data[0] == 0 and data[1] == 0 and data[2] == 0 and data[3] == 0 and data[4] == 0:
