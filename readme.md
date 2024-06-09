@@ -133,15 +133,15 @@ Written in MicroPython (you can use this):
 # loop 1
 i2c.readfrom_mem(0x53, 0x00, 2) # reads part ID to validate part
 i2c.writeto_mem(0x53, 0x10, bytes([2])) # operating mode 2
-i2c.readfrom_mem(0x53, 0x10, 1) # read back operating mode 2
-i2c.writeto_mem(0x53, 0x11, bytes([0]))
-i2c.writeto_mem(0x53, 0x13, bytes([137,74]))
-i2c.writeto_mem(0x53, 0x15, bytes([0, 100]))
-i2c.readfrom_mem(0x53, 0x20, 1)
-i2c.readfrom_mem(0x53, 0x20, 6)
-i2c.readfrom_mem(0x53, 0x20, 1)
-i2c.readfrom_mem(0x53, 0x20, 1)
-i2c.readfrom_mem(0x53, 0x20, 1)
+i2c.readfrom_mem(0x53, 0x10, 1) # read back operating mode 2.      In a test, I only had to get this far to get it back working again on Raspberry Pi Pico.S
+i2c.writeto_mem(0x53, 0x11, bytes([0])) # CONFIG address (interupt-pin related)
+i2c.writeto_mem(0x53, 0x13, bytes([137,74])) # set temperature
+i2c.writeto_mem(0x53, 0x15, bytes([0, 100])) # set relative humidity 
+i2c.readfrom_mem(0x53, 0x20, 1) # read status
+i2c.readfrom_mem(0x53, 0x20, 6) # read data (and other)
+i2c.readfrom_mem(0x53, 0x20, 1) # read status
+i2c.readfrom_mem(0x53, 0x20, 1) # read status
+i2c.readfrom_mem(0x53, 0x20, 1) # read status
 
 # loop 2
 i2c.readfrom_mem(0x53, 0x20, 1)
