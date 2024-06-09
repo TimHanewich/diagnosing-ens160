@@ -35,7 +35,7 @@ Read 6 byte(s) from register 0x20 at address 0x53: 129,2,176,0,150,2
 - Writes byte `2` to register `0x10`, turning the operating mode to on (sensing)
 - Reads back byte `2` from register `0x10`, validating
 
-## Fixing it with Raspberry Pi 3
+## Seems to work on Raspberry Pi 3
 On June 8, 2024, I had an ENS160 sensor that was NOT working at all on a Raspberry Pi Pico. I plugged it into a Raspberry Pi 3, it started working throuhg that.
 
 What I saw when using it for the first time, running `main.py` on commit `c6634ce58400f9b807fe5c89328a88f866316022`:
