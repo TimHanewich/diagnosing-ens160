@@ -31,7 +31,7 @@ Read 6 byte(s) from register 0x20 at address 0x53: 129,2,176,0,150,2
 ## Fixing it with Raspberry Pi 3
 On June 8, 2024, I had an ENS160 sensor that was NOT working at all on a Raspberry Pi Pico. I plugged it into a Raspberry Pi 3, it started working throuhg that.
 
-What I saw when using it for the first time:
+What I saw when using it for the first time, running `main.py` on commit `c6634ce58400f9b807fe5c89328a88f866316022`:
 ```
 Init sequence: reading part ID
 Read 2 byte(s) from register 0x0 at address 0x53: 96,1
