@@ -130,7 +130,7 @@ Read 1 byte(s) from register 0x20 at address 0x53: 133
 Written in MicroPython (you can use this):
 
 ```
-# loop 1
+# init and loop 1
 i2c.readfrom_mem(0x53, 0x00, 2) # reads part ID to validate part
 i2c.writeto_mem(0x53, 0x10, bytes([2])) # operating mode 2
 i2c.readfrom_mem(0x53, 0x10, 1) # read back operating mode 2.      In a test, I only had to get this far to get it back working again on Raspberry Pi Pico
