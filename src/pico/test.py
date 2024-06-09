@@ -5,9 +5,15 @@ i2c = machine.I2C(0, scl=machine.Pin(17), sda=machine.Pin(16))
 print(i2c.scan())
 
 def loop() -> None:
-    print("This loop does not place the ENS160 in operating mode 2 (reading). So be sure to do that before if you have not done it already!")
+    
+    print("Putting sensor in operating mode 2 (sensing)...")
+    i2c.writeto_mem(0x53, 0x10, bytes([2]))
+    print("Sensor now in operating mode 2. Waiting 10 seconds for warm up before proceeding...")
+    time.sleep(10)
+
     start_at:int = time.ticks_ms()
     failures:int = 0
+    print("Now entering loop!")
     while True:
 
         # read
