@@ -11,7 +11,7 @@ def loop() -> None:
     while True:
 
         # read
-        data = i2c.readfrom_mem(0x53, 0x20, 5) # AQI (1 byte), TVOC (2 bytes), ECO2 (2 bytes)
+        data = i2c.readfrom_mem(0x53, 0x21, 5) # AQI (1 byte), TVOC (2 bytes), ECO2 (2 bytes)
 
         # handle
         if data[0] == 0 and data[1] == 0 and data[2] == 0 and data[3] == 0 and data[4] == 0:
@@ -19,7 +19,10 @@ def loop() -> None:
             seconds_elapsed:float = (time.ticks_ms() - start_at) / 60
             minutes_elapsed:float = seconds_elapsed / 60
             hours_elapsed:float = minutes_elapsed / 60
-            failures_per_hour:float = failures / hours_elapsed
+            if hours_elapsed > 0:
+                failures_per_hour:float = failures / hours_elapsed
+            else:
+                failures_per_hour = 9999999
             print("No data! Sensor not working! That is now " + str(failures) + " failure(s) in " + str(minutes_elapsed) + " minutes, averaging " + str(round(failures_per_hour, 1)) + " failures per hour")
             print("Restoring operating mode to 2...")
             i2c.writeto_mem(0x53, 0x10, bytes([2]))
