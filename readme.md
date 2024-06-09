@@ -28,6 +28,13 @@ Read 1 byte(s) from register 0x20 at address 0x53: 131
 Read 6 byte(s) from register 0x20 at address 0x53: 129,2,176,0,150,2
 ```
 
+## Reverse-Engineering how it works
+
+### At Init:
+- Reads 2 bytes from register `0x00`, validating device identity (96,1 are the correct bytes)
+- Writes byte `2` to register `0x10`, turning the operating mode to on (sensing)
+- Reads back byte `2` from register `0x10`, validating
+
 ## Fixing it with Raspberry Pi 3
 On June 8, 2024, I had an ENS160 sensor that was NOT working at all on a Raspberry Pi Pico. I plugged it into a Raspberry Pi 3, it started working throuhg that.
 
@@ -73,12 +80,7 @@ Read 1 byte(s) from register 0x20 at address 0x53: 133
  Status: warm-up
 ```
 
-## Reverse-Engineering how it works
 
-### At Init:
-- Reads 2 bytes from register `0x00`, validating device identity (96,1 are the correct bytes)
-- Writes byte `2` to register `0x10`, turning the operating mode to on (sensing)
-- Reads back byte `2` from register `0x10`, validating
 
 
 
