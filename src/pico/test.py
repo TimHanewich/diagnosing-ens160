@@ -21,7 +21,15 @@ def loop() -> None:
 
         # handle
         if data[0] == 0 and data[1] == 0 and data[2] == 0 and data[3] == 0 and data[4] == 0:
+            print("Failure on last read attempt!")
             failures = failures + 1
+            i2c.writeto_mem(0x53, 0x10, bytes([2]))
+            print("Op Mode restores to 2. Waiting 10 seconds before proceeding...")
+            time.sleep(10)
+        else:
+            print("Data collected successfully: " + str(data))
+
+            # calcualte error rate
             seconds_elapsed:float = (time.ticks_ms() - start_at) / 1000
             minutes_elapsed:float = seconds_elapsed / 60
             hours_elapsed:float = minutes_elapsed / 60
@@ -29,13 +37,8 @@ def loop() -> None:
                 failures_per_hour:float = failures / hours_elapsed
             else:
                 failures_per_hour = 9999999
-            print("No data! Sensor not working! That is now " + str(failures) + " failure(s) in " + str(minutes_elapsed) + " minutes, averaging " + str(round(failures_per_hour, 1)) + " failures per hour")
-            print("Restoring operating mode to 2...")
-            i2c.writeto_mem(0x53, 0x10, bytes([2]))
-            print("Op Mode restores to 2. Waiting 10 seconds before proceeding...")
-            time.sleep(10)
-        else:
-            print("Data collected successfully: " + str(data))
+
+            print("\t" + str(failures) + " failures in " + str(round(minutes_elapsed, 0)) + " minutes, averaging " + str(failures_per_hour) + " failures per hour")
 
         # sleep 
         time.sleep(1)
