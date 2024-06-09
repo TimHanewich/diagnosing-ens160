@@ -26,7 +26,7 @@ def loop() -> None:
         eco2 = sensor.ECO2
 
         # handle
-        if aqi.value == 0: # invalid
+        if aqi["value"] == 0: # invalid
             print("Failure on last read attempt!")
             failures = failures + 1
             sensor.operating_mode = 2
