@@ -82,7 +82,49 @@ Read 1 byte(s) from register 0x20 at address 0x53: 133
 
 After seeing it work for a few minutes, I then removed it from the Raspberry Pi 3 and then plugged it back in to the Raspberry Pi Pico, ran a test script. Again, didn't work. Same error from before. Bizarre.
 
+Again, I plug it into a Raspberry Pi 3. It works: 
 
+```
+Init sequence: reading part ID
+Read 2 byte(s) from register 0x0 at address 0x53: 96,1
+Init sequence: part ID was correct!
+Init sequence: Turning on operating mode
+Writing 1 byte(s) to register 0x10 at address 0x53: 2
+Init sequence: Reading back op mode...
+Read 1 byte(s) from register 0x10 at address 0x53: 2
+Writing 1 byte(s) to register 0x11 at address 0x53: 0
+Writing 2 byte(s) to register 0x13 at address 0x53: 137,74
+Writing 2 byte(s) to register 0x15 at address 0x53: 0,100
+Read 1 byte(s) from register 0x20 at address 0x53: 3
+Read 6 byte(s) from register 0x20 at address 0x53: 1,0,0,0,0,0
+Read 1 byte(s) from register 0x20 at address 0x53: 1
+Read 1 byte(s) from register 0x20 at address 0x53: 1
+    AQI: 0 [invalid]
+   TVOC: 0 ppb
+   eCO2: 0 ppm [invalid]
+Read 1 byte(s) from register 0x20 at address 0x53: 1
+ Status: operating ok
+--------------------------------
+Read 1 byte(s) from register 0x20 at address 0x53: 135
+Read 6 byte(s) from register 0x20 at address 0x53: 133,1,24,0,144,1
+Read 1 byte(s) from register 0x20 at address 0x53: 133
+Read 1 byte(s) from register 0x20 at address 0x53: 133
+    AQI: 1 [excellent]
+   TVOC: 24 ppb
+   eCO2: 400 ppm [excellent]
+Read 1 byte(s) from register 0x20 at address 0x53: 133
+ Status: warm-up
+--------------------------------
+Read 1 byte(s) from register 0x20 at address 0x53: 133
+Read 1 byte(s) from register 0x20 at address 0x53: 133
+Read 1 byte(s) from register 0x20 at address 0x53: 133
+    AQI: 1 [excellent]
+   TVOC: 24 ppb
+   eCO2: 400 ppm [excellent]
+Read 1 byte(s) from register 0x20 at address 0x53: 133
+ Status: warm-up
+--------------------------------
+```
 
 
 
