@@ -6,3 +6,4 @@
     - This test confirmed that even when the sensor stops working and has to be "rebooted" by putting the sensing mode to 2 again, the values appear t be stable:
         - Example error: https://i.imgur.com/882fhGz.png
         - Example error: https://i.imgur.com/caZDYkT.png
+    - In another test that I ran **immediately** after powering-on the pico, it worked as well. The readings were high initially, but values were coming in sure enough.
