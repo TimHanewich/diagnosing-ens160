@@ -80,7 +80,7 @@ Read 1 byte(s) from register 0x20 at address 0x53: 133
  Status: warm-up
 ```
 
-
+After seeing it work for a few minutes, I then removed it from the Raspberry Pi 3 and then plugged it back in to the Raspberry Pi Pico, ran a test script. Again, didn't work. Same error from before. Bizarre.
 
 
 
