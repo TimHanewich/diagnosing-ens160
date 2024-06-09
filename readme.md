@@ -129,7 +129,6 @@ Read 1 byte(s) from register 0x20 at address 0x53: 133
 
 
 
-
 ## Bit Notation
 ```
 Bit 7  Bit 6  Bit 5  Bit 4  Bit 3  Bit 2  Bit 1  Bit 0
