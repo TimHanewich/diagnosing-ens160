@@ -22,7 +22,7 @@ def loop() -> None:
         # handle
         if data[0] == 0 and data[1] == 0 and data[2] == 0 and data[3] == 0 and data[4] == 0:
             failures = failures + 1
-            seconds_elapsed:float = (time.ticks_ms() - start_at) / 60
+            seconds_elapsed:float = (time.ticks_ms() - start_at) / 1000
             minutes_elapsed:float = seconds_elapsed / 60
             hours_elapsed:float = minutes_elapsed / 60
             if hours_elapsed > 0:
