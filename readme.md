@@ -1,4 +1,3 @@
-
 ## Observation of RPi 3's interfacing with the sensor (RPi 3 gets it to work perfectly)
 At init:
 ```
