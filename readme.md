@@ -1,5 +1,5 @@
 
-## Raw Observation of it working
+## Observation of RPi 3's interfacing with the sensor (RPi 3 gets it to work perfectly)
 At init:
 ```
 Read 2 byte(s) from register 0x0 at address 0x53: 96,1
@@ -28,15 +28,8 @@ Read 1 byte(s) from register 0x20 at address 0x53: 131
 Read 6 byte(s) from register 0x20 at address 0x53: 129,2,176,0,150,2
 ```
 
-## Reverse-Engineering how it works
-
-### At Init:
-- Reads 2 bytes from register `0x00`, validating device identity (96,1 are the correct bytes)
-- Writes byte `2` to register `0x10`, turning the operating mode to on (sensing)
-- Reads back byte `2` from register `0x10`, validating
-
 ## Seems to work on Raspberry Pi 3
-On June 8, 2024, I had an ENS160 sensor that was NOT working at all on a Raspberry Pi Pico. I plugged it into a Raspberry Pi 3, it started working throuhg that.
+On June 8, 2024, I had an ENS160 sensor that was NOT working at all on a Raspberry Pi Pico. I plugged it into a Raspberry Pi 3, it started working perfectly right away.
 
 What I saw when using it for the first time, running `main.py` on commit `c6634ce58400f9b807fe5c89328a88f866316022`:
 ```
@@ -127,7 +120,7 @@ Read 1 byte(s) from register 0x20 at address 0x53: 133
 ```
 
 ### Recap of what the Raspberry Pi 3 does to get it to work, step by step
-Written in MicroPython (you can use this):
+I translated the exact I2C reads/writes to MicroPython so we can easily mimick the reads/writes the RPi 3 made on the Pico. Written in MicroPython:
 
 ```
 # init and loop 1
