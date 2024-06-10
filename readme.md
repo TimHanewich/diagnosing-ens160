@@ -1,3 +1,6 @@
+# ENS160 returns 0's to Raspberry Pi Pico but works perfectly with RPi 3
+I posted about this problem on Reddit [here](https://www.reddit.com/r/raspberrypipico/comments/1dcjeqa/i2c_sensor_returning_0s_on_pico_but_works/).
+
 ## Observation of RPi 3's interfacing with the sensor (RPi 3 gets it to work perfectly)
 At init:
 ```
