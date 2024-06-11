@@ -10,3 +10,4 @@
     - In another test that I ran **immediately** after powering-on the pico, it worked as well. The readings were high initially, but values were coming in sure enough.
 - [test3](./test3/) - Same as test1 (direct I2C interfacing), but with a 50,000 frequency
     - I learned that the Raspberry Pi 3 uses a 100,000 frequency by default. But if you don't specify it in MicroPython, it defaults to 400,000. This may be an issue. I found some verbiage on this in the datasheet too. Haven't dug too much into it yet.
+- [test4](./test4/) - Same as test2 (using ENS160.py driver), but with a 50,000 frequency.
