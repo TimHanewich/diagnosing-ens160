@@ -207,3 +207,5 @@ b'\x01\x00\x00\x00\x00\x00'
 Bit 7  Bit 6  Bit 5  Bit 4  Bit 3  Bit 2  Bit 1  Bit 0
 1      0      0      0      1      0      1      1
 ```
+
+This post seems to suggest adding a capacitor might work: https://community.home-assistant.io/t/issue-with-ens160-aht21-ens160-readings-unavailable/697522s
