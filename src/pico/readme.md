@@ -21,3 +21,5 @@ I set up a test on June 12, 2024 with the following conditions:
 - 4.7k Ohm pull up resistors on I2C lines
 
 It ran for over 2 hours without a hiccup at all.
+
+I then tried reproducing this. Wasn't able to get it to work. Maybe I could if I tried again, I don't know.

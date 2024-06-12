@@ -197,7 +197,10 @@ b'\x01\x00\x00\x00\x00\x00'
 b'\x01\x00\x00\x00\x00\x00'
 ```
 
-
+## Raspberry Pi Voltage Ratings:
+- Pico VSYS: 4.87V
+- Pico VBUS: 5.05V
+- Raspberyr Pi 3 +5V: __
 
 ## Bit Notation
 ```
