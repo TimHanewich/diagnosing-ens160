@@ -12,3 +12,12 @@
     - I learned that the Raspberry Pi 3 uses a 100,000 frequency by default. But if you don't specify it in MicroPython, it defaults to 400,000. This may be an issue. I found some verbiage on this in the datasheet too. Haven't dug too much into it yet.
 - [test4](./test4/) - Same as test2 (using ENS160.py driver), but with a 50,000 frequency.
 - [test5](./test5/) - Using the driver, but now abandoning "rebooting" by re-selecting operating mode 2. Just continuously read and print!
+
+
+## Optimistic Signs on June 12, 2024
+I set up a test on June 12, 2024 with the following conditions:
+- Raspberry Pi Pico, I2C via pins 16 and 17 (bus 0), powered by USB (using Thonny in REPL)
+- External powered supplied via a 18650 battery, lifted to 5.13 volts via a MT3608 converter.
+- 4.7k Ohm pull up resistors on I2C lines
+
+It ran for over 2 hours without a hiccup at all.
