@@ -25,4 +25,4 @@ def loop() -> None:
         print("AQI: " + str(aqi) + ", TVOC: " + str(tvoc) + ", ECO2: " + str(eco2))
 
         # sleep 
-        time.sleep(1)
+        time.sleep(5)
