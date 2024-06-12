@@ -1,21 +1,23 @@
-# ENS160 returns 0's to Raspberry Pi Pico but works perfectly with RPi 3
-I posted this on the r/raspberrypipico subreddit but it got removed. Not sure why. Full post included below:
+# ENS160 working perfectly on Raspberry Pi 3 but returns 0's on Raspberry Pi Pico
+I posted about this problem:
+- [In the /raspberrypipico subreddit](https://www.reddit.com/r/raspberrypipico/comments/1dckzoc/i2c_sensor_returning_0s_on_pico_but_works/)
+- [In the /MicroPythonDev subreddit](https://www.reddit.com/r/MicroPythonDev/comments/1dckzmt/i2c_sensor_returning_0s_on_pico_but_works/)
+- [On the Raspberry Pi Stack Exchange](https://raspberrypi.stackexchange.com/questions/148230/i2c-sensor-returning-0s-on-pico-but-works-perfectly-on-rpi-3)
 
-## I2C Sensor Returning 0's on Pico but works Perfectly on RPi 3
-I'm at my wits end over an ENS160 sensor I have working perfectly with a Raspberry Pi 3 (running full Linux OS and Python), but refuses to return any data when interfacing through a Raspberry Pi Pico with MicroPython.
+I was not able to get any meaningful solutions.
 
-Long story short, I purchased [these ENS160 + AHT21 combo sensors](https://a.co/d/id3JsgZ). All of them worked quite well with the Raspberry Pi Pico through MicroPython... for a period of time. After a number of days of continuous reading, the ENS160 readings would eventually start returning 0's for all three readings (AQI, TVOC, and ECO2). Initially, it was intermittent and I was able to do some configuration to get it back to life again. But as time went on, they grew more and more unreliable with the 0's coming back more frequently. At this point, many of the sensors simply don't return any data at all, no matter how I configure them. There is also no sign of any error being logged by the ENS160 from what I can tell. The AHT21 sensors all continue to work perfectly, so I don't think it is a problem involving the I2C lines.
-
-What makes this absolutely puzzling: as soon as I wire one of these sensors (that were proven to not work on the Pico) to a Raspberry Pi 3 (running full Linux OS), it works perfectly. Data comes in, fully reliable, never misses a beat. I've tracked the exact register reads and writes by the Raspberry Pi 3 to the sensor and mimicked them completely with the Pico in MicroPython, both at initialization and read; no luck.
-
-What I've tried:
-- Maybe the Pico's 5V (or 3.3V which I tried too) power supply is unstable. I tried external power. Same results.
-- Adding I2C pull-up resistors when interfacing with the Pi Pico, 10k ohms and 220 ohms. Same results.
-- Using a range of clock speeds (frequencies) - everything from 50,000 Hz to 400,000 Hz. Same results.
-
-I've spent weeks now trying to figure out the issue. I've documented a lot of my trials in [this GitHub repo here](https://github.com/TimHanewich/diagnosing-ens160).
-
-How could this be? I was going to chalk this up as a faulty sensor from a poor manufacturer, but this can't be the case as it works perfectly as soon as I hook it up with the Raspberry Pi 3. Any thoughts are appreciated, thank you!
+## Known Observables
+- After proving a sensor works on a Raspberry Pi 3, it works for a period of time on the Raspberry Pi Pico. Usually between 10 seconds and 5 minutes. Usually about 1 minute or less.
+- After immediately moving a sensor from a Raspberry Pi 3 (where it worked) to the Pico, the readings on the Pico will be stable. Then, they go to their bare minimums (AQI of 1, TVOC of 0, ECO2 of 400) and the sensor grows increasingly insensitive. Then, readings stop altogether.
+- Oftentimes me breathing on it will trigger the readings to stop altogether. 
+- A brand-new sensor seems to work well. For quite some time as well, oftentimes days! The ones I have used for a while have little endurance and fail right away.
+- Pull-up resistors seem to have no effect. I've tried everything between 10k ohms to 220 ohms, no result.
+- The issue occurs on both 5V and 3.3V power.
+- I've tried extenral power source. No luck.
+- I've tried a range of I2C clock speeds. 50,000 to 400,000 Hz. No luck.
+- I've tried numerous buses and pins on the pico. All the same result.
+- I've emulated every I2C read and write that happens on the RPi3 on the Pico. No luck.
+- I've tried both VBUS and VSYS on the Raspberry Pi Pico. Same results.
 
 ## Observation of RPi 3's interfacing with the sensor (RPi 3 gets it to work perfectly)
 At init:
